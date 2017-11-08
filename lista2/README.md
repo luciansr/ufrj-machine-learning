@@ -12,11 +12,6 @@ https://www.python.org/downloads/
 
 http://scikit-learn.org/stable/install.html 
 
-
-<!-- 2. Jupyter Notebook
-
-python3 -m pip install --upgrade pip  
-python3 -m pip install jupyter -->
 3. numpy + scipy
 
 Windows:
