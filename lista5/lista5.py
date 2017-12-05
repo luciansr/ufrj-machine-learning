@@ -2,7 +2,7 @@ from __future__ import division
 import numpy as np
 from hmmlearn import hmm
 
-def questao4_1():
+def questao5_1():
 
     states = ["A", "B"]
     n_states = len(states)
@@ -22,17 +22,22 @@ def questao4_1():
         [0.1, 0.9]
     ])
 
-    model = hmm.MultinomialHMM(n_components=n_states, init_params="")
+    model = hmm.MultinomialHMM(n_components=n_states, init_params="", n_iter=100)
     model.startprob_ = start_probability
     model.transmat_ = transition_probability
     model.emissionprob_ = emission_probability
 
     # predict a sequence of hidden states based on visible states
-    bob_says = np.array([[0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1]]).T
-    model = model.fit(bob_says)
+    bob_says = np.array([[0,1,0,1,0,1,0,1,0,1,0]]).T
+
+    # alice_hears = model.predict(bob_says)
     logprob, alice_hears = model.decode(bob_says, algorithm="viterbi")
     print ("Bob says:", ", ".join(map(lambda x: observations[x[0]], bob_says)))
     print ("Alice hears:", ", ".join(map(lambda x: states[x], alice_hears)))
 
+    log_prob_obs = model.score(bob_says)
+    print("log prob: " , log_prob_obs, " prob:", np.exp(log_prob_obs))
+    print("probabilities")
+    print(model.predict_proba(bob_says))
 
-questao4_1()
+questao5_1()
