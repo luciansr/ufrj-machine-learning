@@ -2,7 +2,7 @@ from __future__ import division
 import numpy as np
 from hmmlearn import hmm
 
-def questao5_1():
+def lista5():
 
     states = ["A", "B"]
     n_states = len(states)
@@ -40,4 +40,4 @@ def questao5_1():
     print("probabilities")
     print(model.predict_proba(bob_says))
 
-questao5_1()
+lista5()
